@@ -26,20 +26,32 @@ def get_word_meaning_of_the_day():
     w = choice(list(words.keys()))
     return w, choice(words[w])
 
+def get_shlok():
+    with Path("data", "Bhagwad_Gita.json").open(encoding = "utf-8") as f:
+        shloks: dict = json.load(f)
+
+    shlok_id = choice(list(shloks.keys()))
+    return shloks[shlok_id]
+
 with open("index.template.html", "r", encoding = "utf-8") as t:
     template = t.read()
 
-bg_color = f'style="background-color: rgb({randint(0, 127)}, {randint(0, 127)}, {randint(0, 127)});"'
+bg_color = f'style="background-color: rgb({randint(0, 150)}, {randint(0, 150)}, {randint(0, 150)});"'
 calendar_date = date.today().strftime("%A, %B %d, %Y")
 deck_date = get_deck_date(date.today())
 daily_word, daily_meaning = get_word_meaning_of_the_day()
+shlok = get_shlok()
 
 index_html = template.format(
     bg_color = bg_color,
     calendar_date = calendar_date,
     deck_date = deck_date,
     daily_word = daily_word,
-    daily_meaning = daily_meaning
+    daily_meaning = daily_meaning,
+    daily_shlok_chapter = shlok['Chapter'],
+    daily_shlok_verse = shlok['Verse'],
+    daily_shlok = shlok['Shloka'],
+    daily_shlok_meaning = shlok['EngMeaning']
 )
 
 with open("index.html", "w", encoding = "utf-8") as f:

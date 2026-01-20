@@ -45,6 +45,11 @@ def get_shlok():
     shlok_id = choice(list(shloks.keys()))
     return shloks[shlok_id]
 
+def get_inf_monkey_text():
+    chars = " abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890.,?!-()'|"
+    split_char = "|"
+    return ''.join(choice(chars) for _ in range(777)).split(split_char)[0]
+
 with open("index.template.html", "r", encoding = "utf-8") as t:
     template = t.read()
 
@@ -66,7 +71,8 @@ index_html = template.format(
     daily_shlok_chapter = shlok['Chapter'],
     daily_shlok_verse = shlok['Verse'],
     daily_shlok = shlok['Shloka'],
-    daily_shlok_meaning = shlok['EngMeaning']
+    daily_shlok_meaning = shlok['EngMeaning'],
+    inf_monkey = get_inf_monkey_text()
 )
 
 with open("index.html", "w", encoding = "utf-8") as f:

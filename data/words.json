@@ -20,6 +20,9 @@
     "anticipatory": [
         "[adj.] done or felt due to an upcoming event"
     ],
+    "bale": [
+        "[noun] a large bundle of tightly wrapped goods"
+    ],
     "brevity": [
         "[noun] shortness of time or conciseness of speech"
     ],
@@ -71,11 +74,23 @@
     "increment": [
         "[noun] an amount a value changes by, especially a fixed amount"
     ],
+    "infringe": [
+        "[verb] to step over a figurative boundary, to intrude"
+    ],
+    "insatiable": [
+        "[adj.] unable to be satisfied or quenched"
+    ],
     "intelligentsia": [
         "[noun] a group of usually influential intellectuals"
     ],
     "jostle": [
         "[verb] to push or bump against roughly"
+    ],
+    "lamentation": [
+        "[noun] expression of deep sorrow or grief"
+    ],
+    "monolith": [
+        "[noun] a large and impersonal structure seen as a single, powerful presence"
     ],
     "patrician": [
         "[noun] a person of noble or high rank"
@@ -118,5 +133,8 @@
     ],
     "whimsical": [
         "[adj.] playfully quaint or fanciful"
+    ],
+    "zephyr": [
+        "[noun] a light breeze or delicate fabric"
     ]
 }

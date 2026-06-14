@@ -8,6 +8,8 @@
     padding-left: 8px;
     color: #444;
     margin-bottom: 0;
+    overflow-wrap: break-word;
+    white-space: pre-wrap;
 }
 
 .bold-content {

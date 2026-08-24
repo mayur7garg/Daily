@@ -1,4 +1,4 @@
-const CACHE_NAME = 'daily-cache-v1';
+const CACHE_NAME = 'daily-cache-v2';
 const urlsToCache = [
   './',
   './index.html',
@@ -31,7 +31,16 @@ self.addEventListener('fetch', event => {
       })
       .catch(() => {
         // Network failed, fallback to cache
-        return caches.match(event.request);
+        return caches.match(event.request, { ignoreSearch: true })
+          .then(cachedResponse => {
+            if (cachedResponse) {
+              return cachedResponse;
+            }
+            // If it's a navigation request and nothing matches, fallback to index.html
+            if (event.request.mode === 'navigate') {
+              return caches.match('./index.html');
+            }
+          });
       })
   );
 });

@@ -1,12 +1,10 @@
-const CACHE_NAME = 'daily-cache-v2';
+const CACHE_NAME = 'daily-cache-v4';
 const urlsToCache = [
-  './',
   './index.html',
   './styles.css',
   './favicon.png',
   './manifest.json',
-  './app.js',
-  'https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css'
+  './app.js'
 ];
 
 self.addEventListener('install', event => {
@@ -22,11 +20,13 @@ self.addEventListener('fetch', event => {
   event.respondWith(
     fetch(event.request)
       .then(response => {
-        // Network was successful, clone response and update cache
-        const responseClone = response.clone();
-        caches.open(CACHE_NAME).then(cache => {
-          cache.put(event.request, responseClone);
-        });
+        // Only cache GET requests and valid responses (status 200 or opaque)
+        if (event.request.method === 'GET' && (response.status === 200 || response.status === 0)) {
+          const responseClone = response.clone();
+          caches.open(CACHE_NAME).then(cache => {
+            cache.put(event.request, responseClone);
+          }).catch(err => console.error('Cache put error:', err));
+        }
         return response;
       })
       .catch(() => {
